@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ratpack Test App</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/style.css" rel="stylesheet">
+    <!--<script src="/scripts/facebookLogin.js"></script>-->
+</head>
+<body>
+<div id="fb-root"></div>
+<div id="h">
+    <div class="logo">SUNDAY SESSIONS</div>
+    <div class="social hidden-xs">
+        <a href="#"><i class="ion-social-twitter"></i></a>
+        <a href="#"><i class="ion-social-instagram"></i></a>
+        <a href="#"><i class="ion-social-facebook"></i></a>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 centered">
+                <h1>Welcome to our new app site.<br/>Start your session today.</h1>
+                <div class="mtb">
+                    <!--<form role="form" action="register.php" method="post" enctype="plain">-->
+                        <a href="http://www.facebook.com/dialog/oauth?client_id=1655907958066072&redirect_uri=http://localhost:5050/success&scope=email">facebook</a>
+
+                    <a href="<%= fbURL %>"><img src="/img/facebook.png" border="0" /></a>
+
+                    "<button class='btn btn-conf btn-green' type="submit">SESSION ON!!!!!</button>
+                        <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="true"
+                             data-auto-logout-link="true"></div>
+                    <!--</form>-->
+                </div><!--/mt-->
+                <h6>30 DAY FREE TRIAL - NO CREDIT CARD NEEDED.</h6>
+
+            </div>
+        </div><!--/row-->
+    </div><!--/container-->
+</div><!-- /H -->
+</body>
+</html>

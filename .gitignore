@@ -1,0 +1,14 @@
+/src/main/groovy/test.groovy
+.gradle
+.idea
+*.ipr
+*.iml
+*.iws
+build
+out
+*.log
+.shelf
+.DS_Store
+/node_modules
+bower_components
+src/ratpack/public/assets/
