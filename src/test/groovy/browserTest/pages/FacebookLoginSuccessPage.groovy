@@ -9,4 +9,8 @@ class FacebookLoginSuccessPage extends Page{
 
     static at = { title == "Successful Login" }
 
+    static content = {
+        profilePicture { $(".profile-picture") }
+    }
+
 }

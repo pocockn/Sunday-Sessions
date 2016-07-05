@@ -20,17 +20,11 @@
             <div class="col-md-8 col-md-offset-2 centered">
                 <h1>Welcome to our new app site.<br/>Start your session today.</h1>
                 <div class="mtb">
-                    <!--<form role="form" action="register.php" method="post" enctype="plain">-->
-                        <a href="http://www.facebook.com/dialog/oauth?client_id=1655907958066072&redirect_uri=http://localhost:5050/success&scope=email">facebook</a>
-
-                    <a href="<%= fbURL %>"><img src="/img/facebook.png" border="0" /></a>
-
+                    <img src="{{model}}"/>
                     "<button class='btn btn-conf btn-green' type="submit">SESSION ON!!!!!</button>
                         <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="true"
                              data-auto-logout-link="true"></div>
-                    <!--</form>-->
                 </div><!--/mt-->
-                <h6>{{model}}</h6>
             </div>
         </div><!--/row-->
     </div><!--/container-->

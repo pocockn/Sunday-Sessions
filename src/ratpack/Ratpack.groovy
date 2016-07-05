@@ -1,4 +1,5 @@
 import facebook.FaceBookLogin
+import facebook.GraphReaderCalls
 import ratpack.groovy.template.MarkupTemplateModule
 import ratpack.handlebars.HandlebarsModule
 
@@ -18,11 +19,19 @@ ratpack {
             render handlebarsTemplate("index.html", model: loginDialogUrlString)
         }
         get('success') {
-            // Grab our access token returned by Facebook
             def code = request.queryParams.code
-            render handlebarsTemplate("success.html", model: code)
+            String access = obtainAccessCode(code)
+            GraphReaderCalls calls = new GraphReaderCalls(access)
+            def image = calls.getProfilePicture()
+            calls.getLocation()
+            render handlebarsTemplate("success.html", model: image)
         }
-
         files { dir "public" }
     }
+}
+
+private String obtainAccessCode(String code) {
+    FaceBookLogin faceBookLogin = new FaceBookLogin()
+    String access = faceBookLogin.exchangeCodeForAccessToken(code).accessToken
+    access
 }

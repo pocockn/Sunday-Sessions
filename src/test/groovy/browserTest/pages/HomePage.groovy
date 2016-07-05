@@ -13,5 +13,6 @@ class HomePage extends Page{
         logoHeader { $(".logo", text: "SUNDAY SESSIONS").text() }
         loginUrl { $("a.facebook-link").attr("href") }
         homePageButton { $('.btn') }
+        ClickLoginUrl { $("a.facebook-link").click() }
     }
 }
