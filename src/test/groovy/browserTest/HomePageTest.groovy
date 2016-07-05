@@ -1,8 +1,8 @@
 package browserTest
 
+import browserTest.pages.HomePage
 import facebook.FaceBookLogin
 import geb.spock.GebSpec
-import browserTest.pages.HomePage
 import ratpack.groovy.test.GroovyRatpackMainApplicationUnderTest
 
 /**
