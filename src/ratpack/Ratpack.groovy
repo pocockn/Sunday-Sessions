@@ -19,12 +19,15 @@ ratpack {
             render handlebarsTemplate("index.html", model: loginDialogUrlString)
         }
         get('success') {
+            def array = []
             def code = request.queryParams.code
             String access = obtainAccessCode(code)
             GraphReaderCalls calls = new GraphReaderCalls(access)
             def image = calls.getProfilePicture()
-            calls.getLocation()
-            render handlebarsTemplate("success.html", model: image)
+            array.add(image)
+            def location = calls.getLocation()
+            array.add(location)
+            render handlebarsTemplate("success.html", model: array)
         }
         files { dir "public" }
     }
