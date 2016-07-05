@@ -27,7 +27,7 @@ ratpack {
             array.add(image)
             def location = calls.getLocation()
             array.add(location)
-            render handlebarsTemplate("success.html", model: array)
+            render handlebarsTemplate("success.html", model: image)
         }
         files { dir "public" }
     }

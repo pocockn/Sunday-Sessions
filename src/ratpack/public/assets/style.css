@@ -178,7 +178,7 @@ input {
 
 /* HEADER SECTION */
 #h {
-	background: url(../images/header.jpg) no-repeat center top;
+	background: url(../images/homeImage.jpg) no-repeat center top;
 	padding-top: 180px;
 	text-align:center;
 	background-attachment: relative;
@@ -363,4 +363,9 @@ ul {
 
 #f a:hover {
 	color: #03C9A9;
+}
+
+.profile-image {
+    margin: 0 auto;
+    padding:20px;
 }

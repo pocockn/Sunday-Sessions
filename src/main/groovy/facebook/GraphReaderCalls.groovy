@@ -30,7 +30,7 @@ class GraphReaderCalls {
     }
 
     String getProfilePicture() {
-        Picture picture = facebookClient.fetchObject("me/picture", Picture.class, Parameter.with("redirect", "false"))
+        Picture picture = facebookClient.fetchObject("me/picture", Picture.class, Parameter.with("redirect", "false"),Parameter.with("height", 200),Parameter.with("width", 200))
         String imageURL = picture.getUrl().toString()
         return imageURL
     }
