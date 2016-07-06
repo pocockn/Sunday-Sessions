@@ -4,11 +4,13 @@ import com.restfb.*
 import com.restfb.types.NamedFacebookType
 import com.restfb.types.Post
 import com.restfb.types.User
+import groovy.util.logging.Slf4j
 import user.Picture
 
 /**
  * Created by pocockn on 05/07/16.
  */
+@Slf4j
 class GraphReaderCalls {
 
     private FacebookClient facebookClient
@@ -32,6 +34,7 @@ class GraphReaderCalls {
     String getProfilePicture() {
         Picture picture = facebookClient.fetchObject("me/picture", Picture.class, Parameter.with("redirect", "false"),Parameter.with("height", 200),Parameter.with("width", 200))
         String imageURL = picture.getUrl().toString()
+        log.info("Profile picture retrieved with URL ${imageURL}")
         return imageURL
     }
 
@@ -39,13 +42,10 @@ class GraphReaderCalls {
         def LatLong = []
         User user = facebookClient.fetchObject("me", User.class, Parameter.with("fields", "location"))
         NamedFacebookType loc = user.getLocation()
-
         if (loc == null) {
-            println "location is null"
+            log.debug("location is null")
         }
-
-        println loc
-
+        log.info("Location retrieved: ${loc}")
         return loc
 
     }

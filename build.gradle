@@ -82,6 +82,9 @@ dependencies {
   // https://mvnrepository.com/artifact/com.restfb/restfb
   compile group: 'com.restfb', name: 'restfb', version: '1.26.0'
 
+    //Grab the user location with GeoIP2
+    compile 'com.maxmind.geoip2:geoip2:2.8.0-rc1'
+
 }
 
 drivers.each { driver ->
