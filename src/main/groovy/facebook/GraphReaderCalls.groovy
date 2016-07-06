@@ -11,9 +11,9 @@ import user.Picture
  */
 class GraphReaderCalls {
 
-    private final FacebookClient facebookClient
+    private FacebookClient facebookClient
 
-    GraphReaderCalls(String accessToken) {
+    void setUpConnection(String accessToken) {
         facebookClient = new DefaultFacebookClient(accessToken, Version.LATEST)
     }
 
