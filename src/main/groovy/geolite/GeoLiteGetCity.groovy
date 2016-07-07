@@ -12,7 +12,7 @@ import static geolite.GeoLiteConfig.DATABASE_CITY_PATH
 @Slf4j
 class GeoLiteGetCity {
 
-    CityResponse getLocationFromIP() {
+    CityResponse getLocationFromIP(String ip) {
 
         ClassLoader classLoader = getClass().getClassLoader();
 
@@ -20,11 +20,20 @@ class GeoLiteGetCity {
 
         DatabaseReader databaseReader = new DatabaseReader.Builder(database).build()
 
-        InetAddress ipAddress = InetAddress.getByName("128.101.101.101")
+        InetAddress ipAddress = InetAddress.getByName(ip)
 
         CityResponse response = databaseReader.city(ipAddress)
         log.info("IP 128.101.101.101 is equal to ${response.city.name}")
         response
+    }
+
+    String findIPAddress() {
+        URL whatismyip = new URL("http://checkip.amazonaws.com/")
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
+                whatismyip.openStream()))
+        String ip = bufferedReader.readLine() //you get the IP as a String
+        log.info("My IP address:" + ip)
+        return ip
     }
 }
 

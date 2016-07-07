@@ -1,6 +1,8 @@
 import facebook.FaceBookLogin
 import facebook.GraphReaderCalls
+import geolite.GeoLiteGetCity
 import handlers.FBLoginSuccessHandler
+import handlers.GrabUsersLocation
 import ratpack.groovy.template.MarkupTemplateModule
 import ratpack.handlebars.HandlebarsModule
 
@@ -12,6 +14,7 @@ ratpack {
         module MarkupTemplateModule
         module HandlebarsModule
         bindInstance(GraphReaderCalls, new GraphReaderCalls())
+        bindInstance(GeoLiteGetCity, new GeoLiteGetCity())
     }
 
     handlers {
@@ -22,6 +25,9 @@ ratpack {
         }
         prefix('success') {
             all new FBLoginSuccessHandler()
+        }
+        prefix('location') {
+            all new GrabUsersLocation()
         }
         files { dir "public" }
     }
