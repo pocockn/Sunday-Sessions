@@ -15,6 +15,8 @@ class GraphReaderCalls {
 
     private FacebookClient facebookClient
 
+    public List<String> ids = []
+
     void setUpConnection(String accessToken) {
         facebookClient = new DefaultFacebookClient(accessToken, Version.LATEST)
     }
@@ -25,10 +27,8 @@ class GraphReaderCalls {
         Connection<User> myFriends = facebookClient.fetchConnection("me/friends", User.class)
         Connection<Post> myFeed = facebookClient.fetchConnection("me/feed", Post.class)
 
-        println("Count of my friends: " + myFriends.getData().size())
+        log.info("Count of my friends: " + myFriends.getData().size())
 
-        if (!myFeed.getData().isEmpty())
-            println("First item in my feed: " + myFeed.getData().get(0).getMessage())
     }
 
     String getProfilePicture() {
@@ -47,8 +47,15 @@ class GraphReaderCalls {
         }
         log.info("Location retrieved: ${loc}")
         return loc
-
     }
 
+    public List<String> get_ID() {
+        User user = facebookClient.fetchObject("me", User.class)
+        def id = user.getId()
+        ids.add(id)
+        log.info("User ID = ${id}")
+        log.info("User IDs = ${ids}")
+        return ids
+    }
 
 }
