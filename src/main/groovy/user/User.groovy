@@ -10,10 +10,6 @@ class User implements Serializable {
 
     String id
 
-    BigDecimal latitude
-
-    BigDecimal longitude
-
     Integer radius = 0
 
 }
