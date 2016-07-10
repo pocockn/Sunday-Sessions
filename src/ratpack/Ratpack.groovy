@@ -5,6 +5,7 @@ import handlers.FBLoginSuccessHandler
 import handlers.GrabUsersLocation
 import ratpack.groovy.template.MarkupTemplateModule
 import ratpack.handlebars.HandlebarsModule
+import ratpack.session.SessionModule
 
 import static ratpack.groovy.Groovy.ratpack
 import static ratpack.handlebars.Template.handlebarsTemplate
@@ -12,6 +13,7 @@ import static ratpack.handlebars.Template.handlebarsTemplate
 ratpack {
     bindings {
         module MarkupTemplateModule
+        module SessionModule
         module HandlebarsModule
         bindInstance(GraphReaderCalls, new GraphReaderCalls())
         bindInstance(GeoLiteGetCity, new GeoLiteGetCity())
