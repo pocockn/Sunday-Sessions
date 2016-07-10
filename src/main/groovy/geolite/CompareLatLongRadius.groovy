@@ -7,31 +7,19 @@ import user.User
  */
 class CompareLatLongRadius {
 
-    static Integer CoordDistance(BigDecimal latitude1, BigDecimal longitude1, BigDecimal latitude2, BigDecimal longitude2) {
-        return 6371 * Math.acos(
-                Math.sin(latitude1) * Math.sin(latitude2)
-                        + Math.cos(latitude1) * Math.cos(latitude2) * Math.cos(longitude2 - longitude1));
-    }
-
-    static List<User> CoordDistanceList(BigDecimal latitude1, BigDecimal longitude1, List<User> users) {
-        users.each { user ->
-            def radius = 6371 * Math.acos(
-                    Math.sin(latitude1) * Math.sin(user.latitude)
-                            + Math.cos(latitude1) * Math.cos(user.longitude) * Math.cos(user.longitude - longitude1))
-            user.radius = radius
-            if (radius < 50) {
-                return user
-            }
+    static List<User> distance(double lat1, double lon1, List<User> users) {
+        List<User> usersWithinRadius = users.each { user ->
+            double theta = lon1 - user.longitude
+            double dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(user.latitude)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(user.latitude)) * Math.cos(deg2rad(theta));
+            dist = Math.acos(dist);
+            dist = rad2deg(dist);
+            dist = dist * 60 * 1.1515;
+            user.radius = dist
+            return user
+        }.findAll {
+            it.radius < 30
         }
-    }
-
-    static Integer distance(double lat1, double lon1, double lat2, double lon2) {
-        double theta = lon1 - lon2;
-        double dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
-        dist = Math.acos(dist);
-        dist = rad2deg(dist);
-        dist = dist * 60 * 1.1515;
-        return (dist);
+        return usersWithinRadius
     }
     /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
     /*::  This function converts decimal degrees to radians             :*/
