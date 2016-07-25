@@ -23,7 +23,6 @@ ext {
   }
 }
 
-compile ratpack.dependency('session')
 
 apply plugin: "io.ratpack.ratpack-groovy"
 apply plugin: "com.github.johnrengelman.shadow"

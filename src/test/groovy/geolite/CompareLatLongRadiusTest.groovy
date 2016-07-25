@@ -6,7 +6,7 @@ import user.User
 /**
  * Created by Nick on 7/10/2016.
  */
-class CompareLatLongRadiusTest extends Specification {
+class CompareLatLongRdiusTest extends Specification {
     def "Given a list of users, find users within 20 mile radius"() {
         given:
         List<User> users = []

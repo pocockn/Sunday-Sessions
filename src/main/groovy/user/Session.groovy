@@ -7,11 +7,9 @@ class Session implements Serializable {
 
     String id
 
-    BigDecimal latitude
-
-    BigDecimal longitude
-
     String userID
 
     Integer rating
+
+    boolean live
 }
