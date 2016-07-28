@@ -1,19 +1,19 @@
 package user
 
+import groovy.transform.Canonical
+
 /**
  * Created by pocockn on 07/07/16.
  */
+@Canonical
 class User implements Serializable {
 
     String id
 
-    String latitude
+    BigDecimal latitude
 
-    String longitude
+    BigDecimal longitude
 
-    User(String id, String latitude, String longitude) {
-        id = this.id
-        latitude = this.latitude
-        longitude = this.longitude
-    }
+    Integer radius = 0
+
 }
