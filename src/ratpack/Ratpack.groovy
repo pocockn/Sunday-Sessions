@@ -8,6 +8,10 @@ import ratpack.groovy.sql.SqlModule
 import ratpack.groovy.template.MarkupTemplateModule
 import ratpack.handlebars.HandlebarsModule
 import ratpack.hikari.HikariModule
+import ratpack.service.Service
+import ratpack.service.StartEvent
+
+import java.util.logging.Logger
 
 import static ratpack.groovy.Groovy.ratpack
 import static ratpack.handlebars.Template.handlebarsTemplate
@@ -23,6 +27,12 @@ ratpack {
         module SqlModule
         module HikariModule
         module HikariConfigModule
+        bindInstance new Service() {
+            void onStart(StartEvent e) throws Exception {
+                Logger logger = Logger.getLogger("")
+                logger.info("Initialising Sunday Sessions")
+            }
+        }
     }
 
     handlers {
