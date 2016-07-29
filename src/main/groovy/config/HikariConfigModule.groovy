@@ -19,7 +19,7 @@ class HikariConfigModule extends AbstractModule {
     @Singleton
     HikariConfig provideHikariConfig(DatabaseConfig config) {
         HikariConfig hc = new HikariConfig(jdbcUrl: config.jdbcUrl, username: config.dbUser, password: config.dbPassword,
-                maximumPoolSize: MAX_POOL_SIZE_GIVEN_HOBBY_DB_AND_TWO_WEB_DYNOS, connectionTestQuery: "SELECT * FROM hospitals")
+                maximumPoolSize: MAX_POOL_SIZE_GIVEN_HOBBY_DB_AND_TWO_WEB_DYNOS, connectionTestQuery: "SELECT * FROM session")
         return hc
     }
 }

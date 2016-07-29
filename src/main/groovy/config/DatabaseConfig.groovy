@@ -14,5 +14,4 @@ class DatabaseConfig {
         "jdbc:postgresql://${getDbHost()}:${getPort()}/${getDb()}"
     }
 
-
 }

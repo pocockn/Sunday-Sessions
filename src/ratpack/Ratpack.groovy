@@ -2,6 +2,7 @@ import config.HikariConfigModule
 import facebook.FaceBookLogin
 import facebook.GraphReaderCalls
 import geolite.GeoLiteGetCity
+import handlers.AddNewSessionHandle
 import handlers.FBLoginSuccessHandler
 import handlers.GrabUsersLocation
 import ratpack.groovy.sql.SqlModule
@@ -10,6 +11,8 @@ import ratpack.handlebars.HandlebarsModule
 import ratpack.hikari.HikariModule
 import ratpack.service.Service
 import ratpack.service.StartEvent
+import service.StorageService
+import service.StorageServiceSessionImplementation
 
 import java.util.logging.Logger
 
@@ -27,6 +30,8 @@ ratpack {
         module SqlModule
         module HikariModule
         module HikariConfigModule
+        bind AddNewSessionHandle
+        bind StorageService, StorageServiceSessionImplementation
         bindInstance new Service() {
             void onStart(StartEvent e) throws Exception {
                 Logger logger = Logger.getLogger("")
@@ -47,6 +52,9 @@ ratpack {
         prefix('location') {
             all new GrabUsersLocation()
         }
+
+        path "session/add-new-session", AddNewSessionHandle
+
         files { dir "public" }
     }
 }
