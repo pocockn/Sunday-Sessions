@@ -1,5 +1,6 @@
 package session
 
+import groovy.transform.Canonical
 import user.User
 
 import java.time.LocalDate
@@ -7,6 +8,7 @@ import java.time.LocalDate
 /**
  * Created by pocockn on 29/07/16.
  */
+@Canonical
 class Session implements Serializable {
 
     String id
@@ -17,6 +19,6 @@ class Session implements Serializable {
 
     User sessionOwner
 
-    List<User> attendees
+    List<User> attendees = []
 
 }

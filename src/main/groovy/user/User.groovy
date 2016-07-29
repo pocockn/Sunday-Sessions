@@ -10,6 +10,8 @@ class User implements Serializable {
 
     String id
 
+    String name
+
     BigDecimal latitude
 
     BigDecimal longitude
