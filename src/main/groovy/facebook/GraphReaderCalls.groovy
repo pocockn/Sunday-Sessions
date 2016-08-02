@@ -15,8 +15,6 @@ class GraphReaderCalls {
 
     private FacebookClient facebookClient
 
-    public List<String> ids = []
-
     void setUpConnection(String accessToken) {
         facebookClient = new DefaultFacebookClient(accessToken, Version.LATEST)
     }
@@ -40,8 +38,8 @@ class GraphReaderCalls {
 
     public String getLocation() {
         def LatLong = []
-        User user = facebookClient.fetchObject("me", User.class, Parameter.with("fields", "location"))
-        NamedFacebookType loc = user.getLocation()
+        User userLocation = facebookClient.fetchObject("me", User.class, Parameter.with("fields", "location"))
+        NamedFacebookType loc = userLocation.getLocation()
         if (loc == null) {
             log.debug("location is null")
         }
@@ -49,13 +47,18 @@ class GraphReaderCalls {
         return loc
     }
 
-    public List<String> get_ID() {
+    public String get_ID() {
         User user = facebookClient.fetchObject("me", User.class)
         def id = user.getId()
-        ids.add(id)
         log.info("User ID = ${id}")
-        log.info("User IDs = ${ids}")
-        return ids
+        return id
+    }
+
+    public String getName() {
+        User user = facebookClient.fetchObject("me", User.class)
+        def name = user.getName()
+        log.info("User Name = ${name}")
+        return name
     }
 
 }

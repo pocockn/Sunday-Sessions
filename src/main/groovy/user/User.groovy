@@ -16,6 +16,4 @@ class User implements Serializable {
 
     BigDecimal longitude
 
-    Integer radius = 0
-
 }

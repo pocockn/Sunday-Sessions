@@ -3,8 +3,6 @@ package session
 import groovy.transform.Canonical
 import user.User
 
-import java.time.LocalDate
-
 /**
  * Created by pocockn on 29/07/16.
  */
@@ -15,7 +13,7 @@ class Session implements Serializable {
 
     String title
 
-    LocalDate date
+    Date date
 
     User sessionOwner
 

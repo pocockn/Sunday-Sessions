@@ -21,6 +21,8 @@ class FBLoginSuccessHandler extends InjectionHandler {
             obtainAccessCode(code).then { accessToken ->
                 graphReaderCalls.setUpConnection(accessToken)
                 def image = graphReaderCalls.getProfilePicture()
+                log.info("${graphReaderCalls.get_ID()}")
+                log.info("${graphReaderCalls.getName()}")
                 ctx.render handlebarsTemplate("success.html", model: image)
             }
         } else {
