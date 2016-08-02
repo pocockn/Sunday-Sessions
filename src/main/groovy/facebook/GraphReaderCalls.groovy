@@ -15,12 +15,6 @@ class GraphReaderCalls {
 
     private FacebookClient facebookClient
 
-    private final User user
-
-    GraphReaderCalls(User user) {
-        this.user = facebookClient.fetchObject("me", User.class)
-    }
-
     void setUpConnection(String accessToken) {
         facebookClient = new DefaultFacebookClient(accessToken, Version.LATEST)
     }
@@ -35,6 +29,11 @@ class GraphReaderCalls {
 
     }
 
+    User fetchUserClass() {
+        User user = facebookClient.fetchObject("me", User.class)
+        user
+    }
+
     String getProfilePicture() {
         Picture picture = facebookClient.fetchObject("me/picture", Picture.class, Parameter.with("redirect", "false"),Parameter.with("height", 200),Parameter.with("width", 200))
         String imageURL = picture.getUrl().toString()
@@ -44,8 +43,8 @@ class GraphReaderCalls {
 
     public String getLocation() {
         def LatLong = []
-        User userLocation = facebookClient.fetchObject("me", User.class, Parameter.with("fields", "location"))
-        NamedFacebookType loc = userLocation.getLocation()
+        User user = facebookClient.fetchObject("me", User.class, Parameter.with("fields", "location"))
+        NamedFacebookType loc = user.getLocation()
         if (loc == null) {
             log.debug("location is null")
         }
@@ -54,15 +53,25 @@ class GraphReaderCalls {
     }
 
     public String get_ID() {
+        def user = fetchUserClass()
         def id = user.getId()
         log.info("User ID = ${id}")
         return id
     }
 
     public String getName() {
+        def user = fetchUserClass()
         def name = user.getName()
         log.info("User Name = ${name}")
         return name
     }
+
+    public String getEmail() {
+        def user = fetchUserClass()
+        def email = user.getEmail()
+        log.info("User Name = ${email}")
+        return email
+    }
+
 
 }
