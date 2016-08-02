@@ -15,6 +15,12 @@ class GraphReaderCalls {
 
     private FacebookClient facebookClient
 
+    private final User user
+
+    GraphReaderCalls(User user) {
+        this.user = facebookClient.fetchObject("me", User.class)
+    }
+
     void setUpConnection(String accessToken) {
         facebookClient = new DefaultFacebookClient(accessToken, Version.LATEST)
     }
@@ -48,14 +54,12 @@ class GraphReaderCalls {
     }
 
     public String get_ID() {
-        User user = facebookClient.fetchObject("me", User.class)
         def id = user.getId()
         log.info("User ID = ${id}")
         return id
     }
 
     public String getName() {
-        User user = facebookClient.fetchObject("me", User.class)
         def name = user.getName()
         log.info("User Name = ${name}")
         return name
