@@ -7,8 +7,6 @@ import service.StorageService
 import session.Session
 import user.User
 
-import java.time.LocalDate
-
 import static ratpack.handlebars.Template.handlebarsTemplate
 import static ratpack.jackson.Jackson.json
 
@@ -16,6 +14,7 @@ import static ratpack.jackson.Jackson.json
  * Created by pocockn on 28/04/16.
  */
 class AddNewSessionHandle extends InjectionHandler {
+
 
     void handle(Context ctx, StorageService sessionService) {
         ctx.byMethod {
@@ -27,7 +26,7 @@ class AddNewSessionHandle extends InjectionHandler {
                     String id = UUID.randomUUID()
                     String sessionName = form.get("sessionName")
                     User user = new User('124', 'Nick Pocock', 40.7128, 74.0059)
-                    sessionService.save(new Session(id, sessionName, LocalDate.now(), user)).onError { error ->
+                    sessionService.save(new Session(id, sessionName, new Date(), user)).onError { error ->
                         ctx.render json([success: false, error: error.message])
                     } then {
                         ctx.render handlebarsTemplate("success.html")
