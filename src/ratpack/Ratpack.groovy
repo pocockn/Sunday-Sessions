@@ -3,6 +3,7 @@ import facebook.FaceBookLogin
 import facebook.GraphReaderCalls
 import geolite.GeoLiteGetCity
 import handlers.AddNewSessionHandle
+import handlers.AllSessionsHandler
 import handlers.FBLoginSuccessHandler
 import handlers.GrabUsersLocation
 import ratpack.groovy.sql.SqlModule
@@ -51,6 +52,9 @@ ratpack {
         }
         prefix('location') {
             all new GrabUsersLocation()
+        }
+        prefix('allSessions') {
+            all new AllSessionsHandler()
         }
 
         path "session/add-new-session", AddNewSessionHandle
