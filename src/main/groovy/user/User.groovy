@@ -12,6 +12,8 @@ class User implements Serializable {
 
     String name
 
+    String profileImageUrl
+
     BigDecimal latitude
 
     BigDecimal longitude
