@@ -21,6 +21,9 @@ class FBLoginSuccessHandler extends InjectionHandler {
         if (code) {
             obtainAccessCode(code).map { accessToken ->
                 graphReaderCalls.setUpConnection(accessToken)
+            }.mapError(Exception) { e ->
+                log.warn("Access code is not correct")
+                ctx.render handlebarsTemplate("error.html")
             }.then {
                 List<String> userInfo = grabUserInfo(graphReaderCalls)
                 accountService.createUserObject(userInfo[0], userInfo[1], userInfo[2])
@@ -42,7 +45,7 @@ class FBLoginSuccessHandler extends InjectionHandler {
         List<String> userInfo = []
         String id = graphReaderCalls.get_ID()
         String name = graphReaderCalls.getName()
-        def image = graphReaderCalls.getProfilePicture()
+        String image = graphReaderCalls.getProfilePicture()
         userInfo.add(id)
         userInfo.add(name)
         userInfo.add(image)

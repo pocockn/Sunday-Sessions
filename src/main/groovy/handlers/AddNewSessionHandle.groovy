@@ -25,7 +25,7 @@ class AddNewSessionHandle extends InjectionHandler {
                 ctx.parse(Form.class).then { form ->
                     String id = UUID.randomUUID()
                     String sessionName = form.get("sessionName")
-                    User user = new User('124', 'Nick Pocock', 40.7128, 74.0059)
+                    User user = new User('124', 'Nick Pocock', 'xxx', 40.7128, 74.0059)
                     sessionService.save(new Session(id, sessionName, new Date(), user)).onError { error ->
                         ctx.render json([success: false, error: error.message])
                     } then {
