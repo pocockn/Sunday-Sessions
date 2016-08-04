@@ -1,0 +1,21 @@
+{
+  "name": "sundaysessionsEmberPOC",
+  "version": "1.0.7",
+  "homepage": "http://blueprint-web.com",
+  "authors": [
+    "Nick Pocock"
+  ],
+  "description": "A basic prototype",
+  "keywords": [
+    "bootstrap",
+    "theme"
+  ],
+  "license": "Apache",
+  "dependencies": {
+    "bootstrap": "~3.3.6",
+    "ember": "~2.6.0",
+    "ember-cli-shims": "0.1.1",
+    "ember-cli-test-loader": "0.2.2",
+    "ember-qunit-notifications": "0.1.0"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "engines": {
+    "node": "0.12.x"
+  },
+  "name": "procurement",
+  "private": false,
+  "version": "0.1.0",
+  "description": "",
+  "repository": "https://github.com/pocockn/procurement",
+  "license": "MIT",
+  "main": "",
+  "dependencies": {
+    "bower": "^1.4.0"
+  }
+}
