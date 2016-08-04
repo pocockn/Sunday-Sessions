@@ -27,7 +27,8 @@ class FBLoginSuccessHandler extends InjectionHandler {
             }.then {
                 List<String> userInfo = grabUserInfo(graphReaderCalls)
                 accountService.createUserObject(userInfo[0], userInfo[1], userInfo[2])
-                ctx.render handlebarsTemplate("success.html", model: userInfo[2])
+                        .then { ctx.render handlebarsTemplate("success.html", model: userInfo[2]) }
+
             }
         } else {
             ctx.render handlebarsTemplate("error.html")

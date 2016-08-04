@@ -34,6 +34,7 @@ class AccountService {
             storageServiceUserImplementation.fetch(user.id).flatMap { userAccount ->
                 if (userAccount) {
                     Promise.value(userAccount)
+                    log.info("returning user account? Don't know why: ${userAccount}")
                 } else {
                     log.info("Attempting to register user account: ${userAccount}")
                     registerAccount(userAccount)
