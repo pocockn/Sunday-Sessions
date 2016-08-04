@@ -43,11 +43,14 @@ class StorageServiceUserImplementation implements StorageService<User> {
 
     @Override
     Promise<User> fetch(String id) {
+        if (id == null) {
+            return null
+        }
         Blocking.get {
             String q = "SELECT * FROM users WHERE id = ?"
             (String) sql.firstRow(q, id)?.getAt(0)
         }.map { json ->
-            User instance = mapper.readValue(json, User)
+            User instance = json ? mapper.readValue(json, User) : null
             instance
         }
     }
