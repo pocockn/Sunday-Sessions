@@ -30,7 +30,10 @@ class AccountService {
     }
 
     private Promise<User> fetchOrCreateAccount(User user) {
+        log.info("fetch or create method for ${user}")
         if (user) {
+            log.info("we have got down to below the user if statement")
+            log.info("${user.id}")
             storageServiceUserImplementation.fetch(user.id).flatMap { userAccount ->
                 if (userAccount) {
                     Promise.value(userAccount)
