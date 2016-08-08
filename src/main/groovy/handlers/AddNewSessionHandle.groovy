@@ -3,7 +3,7 @@ package handlers
 import ratpack.form.Form
 import ratpack.handling.Context
 import ratpack.handling.InjectionHandler
-import service.StorageService
+import service.SessionStorageService
 import session.Session
 import user.User
 
@@ -16,7 +16,7 @@ import static ratpack.jackson.Jackson.json
 class AddNewSessionHandle extends InjectionHandler {
 
 
-    void handle(Context ctx, StorageService sessionService) {
+    void handle(Context ctx, SessionStorageService sessionService) {
         ctx.byMethod {
             it.get {
                 ctx.render handlebarsTemplate("add-new-session.html")
