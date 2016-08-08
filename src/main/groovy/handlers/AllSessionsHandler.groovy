@@ -2,7 +2,7 @@ package handlers
 
 import ratpack.handling.Context
 import ratpack.handling.InjectionHandler
-import service.StorageService
+import service.SessionStorageService
 
 import static ratpack.handlebars.Template.handlebarsTemplate
 
@@ -11,7 +11,7 @@ import static ratpack.handlebars.Template.handlebarsTemplate
  */
 class AllSessionsHandler extends InjectionHandler {
 
-    void handle(Context ctx, StorageService sessionService) {
+    void handle(Context ctx, SessionStorageService sessionService) {
         sessionService.fetchAll().then { sessions ->
             ctx.render handlebarsTemplate("allSessions.html", model: [sessions: sessions])
         }
