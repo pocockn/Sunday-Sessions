@@ -12,8 +12,9 @@ import ratpack.handlebars.HandlebarsModule
 import ratpack.hikari.HikariModule
 import ratpack.service.Service
 import ratpack.service.StartEvent
-import service.StorageService
-import service.StorageServiceSessionImplementation
+import ratpack.session.SessionModule
+import service.SessionStorageService
+import service.SessionStorageServiceSessionImplementation
 import service.registration.AccountService
 
 import java.util.logging.Logger
@@ -33,8 +34,9 @@ ratpack {
         module HikariModule
         module HikariConfigModule
         bind AddNewSessionHandle
-        bind StorageService, StorageServiceSessionImplementation
+        bind SessionStorageService, SessionStorageServiceSessionImplementation
         bind AccountService
+        module(SessionModule)
         bindInstance new Service() {
             void onStart(StartEvent e) throws Exception {
                 Logger logger = Logger.getLogger("")

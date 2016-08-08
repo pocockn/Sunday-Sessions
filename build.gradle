@@ -73,6 +73,7 @@ dependencies {
   compile 'com.fasterxml.jackson:jackson-parent:2.7-1'
   compile 'postgresql:postgresql:9.1-901-1.jdbc4'
   compile 'org.codehaus.groovy:groovy-all:2.4.4'
+  compile ratpack.dependency('session')
 
   compile 'org.liquibase:liquibase-core:3.4.2'
 
