@@ -25,22 +25,16 @@ class AccountService {
         user.id = id
         user.name = name
         user.profileImageUrl = profileImageUrl
-        log.info("Attempting to fetch or create user account: ${user}")
         fetchOrCreateAccount(user)
     }
 
-    private Promise<User> fetchOrCreateAccount(User user) {
-        log.info("fetch or create method for ${user}")
+    Promise<User> fetchOrCreateAccount(User user) {
         if (user) {
-            log.info("we have got down to below the user if statement")
-            log.info("${user.id}")
-            storageServiceUserImplementation.fetch(user.id).flatMap { userAccount ->
+            storageServiceUserImplementation.fetch(user.id.toString()).flatMap { userAccount ->
                 if (userAccount) {
                     Promise.value(userAccount)
-                    log.info("returning user account? Don't know why: ${userAccount}")
                 } else {
-                    log.info("Attempting to register user account: ${userAccount}")
-                    registerAccount(userAccount)
+                    registerAccount(user)
                 }
             }
         } else {
@@ -48,13 +42,12 @@ class AccountService {
         }
     }
 
-
     private Promise<User> registerAccount(User user) {
         Blocking.get {
-            new User(id: user.id, name: user.name, profileImageUrl: user.profileImageUrl)
+            new User(id: user.id.toString(), name: user.name, profileImageUrl: user.profileImageUrl)
         }.flatMap { userAccount ->
-            log.info("Attempting to create new user account: ${userAccount}")
-            storageServiceUserImplementation.save(userAccount)
+            log.info("Attempting to save user: ${userAccount.name}")
+            storageServiceUserImplementation.saveUser(userAccount)
         }
     }
 }
