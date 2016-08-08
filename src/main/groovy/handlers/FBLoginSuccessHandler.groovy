@@ -7,6 +7,7 @@ import ratpack.exec.Promise
 import ratpack.handling.Context
 import ratpack.handling.InjectionHandler
 import service.registration.AccountService
+import userSession.UserSession
 
 import static ratpack.handlebars.Template.handlebarsTemplate
 
@@ -16,7 +17,7 @@ import static ratpack.handlebars.Template.handlebarsTemplate
 @Slf4j
 class FBLoginSuccessHandler extends InjectionHandler {
 
-    public void handle(Context ctx, GraphReaderCalls graphReaderCalls, AccountService accountService) throws Exception {
+    public void handle(Context ctx, GraphReaderCalls graphReaderCalls, AccountService accountService, UserSession session) throws Exception {
         def code = ctx.request.queryParams.code
         if (code) {
             obtainAccessCode(code).map { accessToken ->
