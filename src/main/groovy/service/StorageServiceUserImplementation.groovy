@@ -1,8 +1,8 @@
 package service
 
-import Database.JsonObjectMapper
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.inject.Inject
+import database.JsonObjectMapper
 import groovy.sql.GroovyRowResult
 import groovy.sql.Sql
 import groovy.util.logging.Slf4j
