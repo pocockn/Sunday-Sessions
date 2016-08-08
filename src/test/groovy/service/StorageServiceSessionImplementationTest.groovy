@@ -17,7 +17,7 @@ class StorageServiceSessionImplementationTest extends Specification {
     ExecHarness execHarness = ExecHarness.harness()
     @Subject
     @Shared
-    StorageServiceSessionImplementation store = new StorageServiceSessionImplementation()
+    SessionStorageServiceSessionImplementation store = new SessionStorageServiceSessionImplementation()
 
     void "Should save and return a list of sessions"() {
         given:

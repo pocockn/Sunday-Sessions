@@ -13,7 +13,7 @@ import session.Session
 /**
  * Created by pocockn on 29/07/16.
  */
-class StorageServiceSessionImplementation implements StorageService<Session> {
+class SessionStorageServiceSessionImplementation implements SessionStorageService<Session> {
 
     @Inject
     Sql sql

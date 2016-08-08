@@ -6,7 +6,7 @@ import ratpack.exec.Promise
 /**
  * Created by pocockn on 29/07/16.
  */
-interface StorageService<T> {
+interface SessionStorageService<T> {
 
     Promise<List<?>> fetchAll()
 
