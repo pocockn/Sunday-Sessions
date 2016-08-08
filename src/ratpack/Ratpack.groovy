@@ -34,6 +34,7 @@ ratpack {
         module HikariModule
         module HikariConfigModule
         bind AddNewSessionHandle
+        bind UserProfileHandler
         bind SessionStorageService, SessionStorageServiceSessionImplementation
         bind AccountService
         module(SessionModule)
@@ -59,6 +60,10 @@ ratpack {
         }
         prefix('allSessions') {
             all new AllSessionsHandler()
+        }
+
+        prefix('userProfile') {
+            all new UserProfileHandler()
         }
 
         path "session/add-new-session", AddNewSessionHandle
