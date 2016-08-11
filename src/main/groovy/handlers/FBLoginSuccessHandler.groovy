@@ -6,7 +6,10 @@ import groovy.util.logging.Slf4j
 import ratpack.exec.Promise
 import ratpack.handling.Context
 import ratpack.handling.InjectionHandler
+import ratpack.server.PublicAddress
+import service.UserCookieHelper
 import service.registration.AccountService
+import user.User
 import userSession.UserSession
 
 import static ratpack.handlebars.Template.handlebarsTemplate
@@ -17,7 +20,7 @@ import static ratpack.handlebars.Template.handlebarsTemplate
 @Slf4j
 class FBLoginSuccessHandler extends InjectionHandler {
 
-    public void handle(Context ctx, GraphReaderCalls graphReaderCalls, AccountService accountService, UserSession session) throws Exception {
+    public void handle(Context ctx, GraphReaderCalls graphReaderCalls, PublicAddress publicAddress, AccountService accountService, UserSession session) throws Exception {
         def code = ctx.request.queryParams.code
         if (code) {
             obtainAccessCode(code).map { accessToken ->
@@ -27,14 +30,27 @@ class FBLoginSuccessHandler extends InjectionHandler {
                 ctx.render handlebarsTemplate("error.html")
             }.then {
                 List<String> userInfo = grabUserInfo(graphReaderCalls)
-                accountService.createUserObject(userInfo[0], userInfo[1], userInfo[2])
-                        .then { ctx.render handlebarsTemplate("success.html", model: userInfo[2]) }
+                accountService.createUserObject(userInfo[0], userInfo[1], userInfo[2]).then { account ->
+                    if (account) {
+                        log.info("login handler the account being returned is ${account.name}")
+                        redirectToHomePage(ctx, publicAddress, session, account)
+                    } else {
+                        ctx.render handlebarsTemplate("error.html")
+                    }
+
+                }
 
             }
         } else {
             ctx.render handlebarsTemplate("error.html")
         }
 
+    }
+
+    private static void redirectToHomePage(Context ctx, PublicAddress publicAddress, UserSession session, User user) {
+        UserCookieHelper.dropAccountCookies(ctx, publicAddress, session, user).then {
+            ctx.render handlebarsTemplate("success.html")
+        }
     }
 
     protected static Promise<String> obtainAccessCode(String code) {
