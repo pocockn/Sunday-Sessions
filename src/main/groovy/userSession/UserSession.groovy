@@ -34,7 +34,7 @@ class UserSession {
 
     Operation user(String userId, String name) {
         def user = [userId: userId, name: name]
-        log.info("Operation user method, setting the session with this data ${session.set(USER_KEY, user)}")
+        log.info("Operation user method, setting the session with this data ${user}")
         session.set(USER_KEY, user)
     }
 
@@ -47,6 +47,7 @@ class UserSession {
             if (hashMap.isPresent()) {
                 Optional.of(new UserSessionModel(id: hashMap.value.id, name: hashMap.value.name))
             } else {
+                log.info("session is empty")
                 Optional.empty()
             }
         }
