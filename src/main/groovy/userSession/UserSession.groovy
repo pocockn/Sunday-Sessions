@@ -32,8 +32,8 @@ class UserSession {
         session.data.map { it.get(sessionKey) }
     }
 
-    Operation user(String userId, String name) {
-        def user = [userId: userId, name: name]
+    Operation user(String id, String name) {
+        def user = [id: id, name: name]
         log.info("Operation user method, setting the session with this data ${user}")
         session.set(USER_KEY, user)
     }
@@ -55,8 +55,11 @@ class UserSession {
 
     Promise<Optional<User>> userAccount() {
         user().flatMap { user ->
+            log.info("userAccount method parameter is ${user.get().id}")
             if (user.isPresent()) {
-                userStorageService.fetch(user.get().id).map { Optional.of(it) }
+                userStorageService.fetch(user.get().id).map {
+                    Optional.of(it)
+                }
             } else {
                 Promise.value(Optional.empty())
             }

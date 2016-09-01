@@ -1,9 +1,10 @@
 {{> partials/header.html}}
     <div class="container">
         <div class="row">
+            <h1>{{account.name}}</h1>
             <div class="col-md-8 col-md-offset-2 centered">
-                <p style="color: #ffffff;">Longitude is : {{model.longitude}}</p>
-                <p style="color: #ffffff;">Latitude is : {{model.latitude}}</p>
+                <img src="{{account.profileImageUrl}}" class="img-responsive profile-image"/>
+                <button class='btn btn-conf btn-green' type="submit">Find Me a Session</button>
             </div>
         </div><!--/row-->
     </div><!--/container-->

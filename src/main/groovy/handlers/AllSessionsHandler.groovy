@@ -12,9 +12,12 @@ import static ratpack.handlebars.Template.handlebarsTemplate
 class AllSessionsHandler extends InjectionHandler {
 
     void handle(Context ctx, SessionStorageService sessionService) {
-        sessionService.fetchAll().then { sessions ->
+        sessionService.fetchAll()
+                .onError {
+            ctx.render handlebarsTemplate("error.html")
+        }
+        .then { sessions ->
             ctx.render handlebarsTemplate("allSessions.html", model: [sessions: sessions])
         }
-
     }
 }

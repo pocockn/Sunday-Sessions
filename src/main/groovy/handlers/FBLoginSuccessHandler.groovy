@@ -17,6 +17,7 @@ import static ratpack.handlebars.Template.handlebarsTemplate
 /**
  * Created by pocockn on 06/07/16.
  */
+
 @Slf4j
 class FBLoginSuccessHandler extends InjectionHandler {
 
@@ -49,7 +50,7 @@ class FBLoginSuccessHandler extends InjectionHandler {
 
     private static void redirectToHomePage(Context ctx, PublicAddress publicAddress, UserSession session, User user) {
         UserCookieHelper.dropAccountCookies(ctx, publicAddress, session, user).then {
-            ctx.render handlebarsTemplate("success.html")
+            ctx.redirect("/userProfile")
         }
     }
 

@@ -15,6 +15,7 @@ import static java.net.URLEncoder.encode
 /**
  * Created by pocockn on 08/08/16.
  */
+
 @Slf4j
 class UserCookieHelper {
 
@@ -36,6 +37,8 @@ class UserCookieHelper {
         log.info("Attempting to set session in our UserCookieHelper for user ${name}")
         userSession.user(id, name).next {
             def encondedName = encode(name, 'UTF-8').replaceAll("\\+", "%20")
+            updatedCookiePathAndDomain(publicAddress, ctx.response.cookie(FULLNAME_COOKIE, encondedName), COOKIE_EXPIRY_TIME_SECONDS)
+            updatedCookiePathAndDomain(publicAddress, ctx.response.cookie(ACCOUNTID_COOKIE, id), COOKIE_EXPIRY_TIME_SECONDS)
 
         }
     }

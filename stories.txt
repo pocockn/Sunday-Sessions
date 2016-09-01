@@ -1,0 +1,8 @@
+1) If not logged in, redirect to login page
+2) Get browser tests to work
+3) test all login and adding sessions
+4) fix the tests for new layout
+5) new sessions design, bootstrap
+6) create home page design, tests
+7) design login page
+8) 
