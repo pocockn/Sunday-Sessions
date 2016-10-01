@@ -15,8 +15,6 @@ class GraphReaderCalls {
 
     private FacebookClient facebookClient
 
-    public List<String> ids = []
-
     void setUpConnection(String accessToken) {
         facebookClient = new DefaultFacebookClient(accessToken, Version.LATEST)
     }
@@ -29,6 +27,11 @@ class GraphReaderCalls {
 
         log.info("Count of my friends: " + myFriends.getData().size())
 
+    }
+
+    User fetchUserClass() {
+        User user = facebookClient.fetchObject("me", User.class)
+        user
     }
 
     String getProfilePicture() {
@@ -49,13 +52,26 @@ class GraphReaderCalls {
         return loc
     }
 
-    public List<String> get_ID() {
-        User user = facebookClient.fetchObject("me", User.class)
+    public String get_ID() {
+        def user = fetchUserClass()
         def id = user.getId()
-        ids.add(id)
         log.info("User ID = ${id}")
-        log.info("User IDs = ${ids}")
-        return ids
+        return id
     }
+
+    public String getName() {
+        def user = fetchUserClass()
+        def name = user.getName()
+        log.info("User Name = ${name}")
+        return name
+    }
+
+    public String getEmail() {
+        def user = fetchUserClass()
+        def email = user.getEmail()
+        log.info("User Name = ${email}")
+        return email
+    }
+
 
 }

@@ -10,10 +10,12 @@ class User implements Serializable {
 
     String id
 
+    String name
+
+    String profileImageUrl
+
     BigDecimal latitude
 
     BigDecimal longitude
-
-    Integer radius = 0
 
 }

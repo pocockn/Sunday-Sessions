@@ -75,6 +75,8 @@ dependencies {
   compile 'postgresql:postgresql:9.1-901-1.jdbc4'
   compile 'org.codehaus.groovy:groovy-all:2.4.4'
 
+  compile 'org.liquibase:liquibase-core:3.4.2'
+
   testCompile ratpack.dependency('test')
   compile ratpack.dependency("remote")
   testCompile ratpack.dependency("remote-test")
@@ -104,3 +106,4 @@ drivers.each { driver ->
     // systemProperty "geb.build.baseUrl", "http://myapp.com"
   }
 }
+

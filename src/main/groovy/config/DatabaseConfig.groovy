@@ -1,7 +1,6 @@
 package config
-
 /**
- * Created by Nick on 7/25/2016.
+ * Created by pocockn on 06/06/16.
  */
 class DatabaseConfig {
 
@@ -14,4 +13,5 @@ class DatabaseConfig {
     String getJdbcUrl() {
         "jdbc:postgresql://${getDbHost()}:${getPort()}/${getDb()}"
     }
+
 }
