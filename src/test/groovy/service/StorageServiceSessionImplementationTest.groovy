@@ -2,27 +2,28 @@ package service
 
 import ratpack.test.exec.ExecHarness
 import session.Session
-import spock.lang.*
+import spock.lang.AutoCleanup
+import spock.lang.Shared
+import spock.lang.Specification
+import spock.lang.Subject
 import user.User
-
-import java.time.LocalDate
 
 /**
  * Created by pocockn on 29/07/16.
  */
-@Ignore
+
 class StorageServiceSessionImplementationTest extends Specification {
 
     @AutoCleanup
     ExecHarness execHarness = ExecHarness.harness()
     @Subject
     @Shared
-    StorageServiceSessionImplementation store = new StorageServiceSessionImplementation()
+    SessionStorageServiceSessionImplementation store = new SessionStorageServiceSessionImplementation()
 
     void "Should save and return a list of sessions"() {
         given:
-        User user = new User('124', 'Nick Pocock', 40.7128, 74.0059)
-        Session session = new Session(id: 'xxx', title: "My test session", date: LocalDate.now(), sessionOwner: user)
+        User user = new User('124', 'Nick Pocock', 'xxx', 40.7128, 74.0059)
+        Session session = new Session(id: 'xxx', title: "My test session", date: new Date(), sessionOwner: user)
 
         execHarness.yield {
             store.save(session)

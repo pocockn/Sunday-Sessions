@@ -1,20 +1,4 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Sunday Session</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/assets/style.css" rel="stylesheet">
-    <!--<script src="/scripts/facebookLogin.js"></script>-->
-</head>
-<body>
-<div id="fb-root"></div>
-<div id="h">
-    <div class="logo">SUNDAY SESSIONS</div>
-    <div class="social hidden-xs">
-        <a href="#"><i class="ion-social-twitter"></i></a>
-        <a href="#"><i class="ion-social-instagram"></i></a>
-        <a href="#"><i class="ion-social-facebook"></i></a>
-    </div>
+{{> partials/header.html}}
     <div class="container">
         <div class="row">
             {{#each model.sessions}}

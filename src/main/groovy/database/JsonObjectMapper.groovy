@@ -1,4 +1,4 @@
-package Database
+package database
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.inject.Inject
