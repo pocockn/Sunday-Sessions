@@ -4,11 +4,12 @@ import browserTest.pages.HomePage
 import facebook.FaceBookLogin
 import geb.spock.GebSpec
 import ratpack.groovy.test.GroovyRatpackMainApplicationUnderTest
+import spock.lang.Ignore
 
 /**
  * Created by pocockn on 15/04/16.
  */
-
+@Ignore
 class HomePageTest extends GebSpec {
 
     def aut = new GroovyRatpackMainApplicationUnderTest()
