@@ -17,7 +17,7 @@ import static ratpack.jackson.Jackson.json
  */
 
 @Slf4j
-class AddNewSessionHandle extends InjectionHandler {
+class AddNewSessionHandler extends InjectionHandler {
 
 
     void handle(Context ctx, SessionStorageService sessionService, UserSession userSession) {
@@ -33,7 +33,7 @@ class AddNewSessionHandle extends InjectionHandler {
                         User user = new User(userParameter.get().id, userParameter.get().name, 'xxx', 40.7128, 74.0059)
                         sessionService.save(new Session(id, sessionName, new Date(), user)).onError { error ->
                             ctx.render json([success: false, error: error.message])
-                        } then {
+                        }.then {
                             log.info("Session: ${sessionName} has been added with ID ${id}")
                             ctx.render handlebarsTemplate("success.html")
                         }
