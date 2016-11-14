@@ -23,8 +23,8 @@ class MatchUserHandler extends InjectionHandler {
     private Promise<LinkedHashMap<String, String>> getUsersLocation(GeoLiteGetCity geoLiteGetCity) {
         def location = geoLiteGetCity.getLocationFromIP(geoLiteGetCity.findIPAddress())
         Map<String, String> coordinates = [:]
-        coordinates.put("longitude", location.location.longitude.toString())
-        coordinates.put("latitude", location.location.latitude.toString())
+        coordinates.longitude = location.location.longitude.toString()
+        coordinates.latitude = location.location.latitude.toString()
         log.info("Latitude ${location.location.latitude}")
         log.info("Longitude ${location.location.longitude}")
         Promise.value(coordinates)
