@@ -18,4 +18,6 @@ class User implements Serializable {
 
     BigDecimal longitude
 
+    Double radius
+
 }
