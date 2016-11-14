@@ -33,7 +33,7 @@ ratpack {
         module SqlModule
         module HikariModule
         module HikariConfigModule
-        bind AddNewSessionHandle
+        bind AddNewSessionHandler
         bind UserProfileHandler
         bind UserStorageService, StorageServiceUserImplementation
         bind UserSession
@@ -58,7 +58,7 @@ ratpack {
             all new FBLoginSuccessHandler()
         }
         prefix('newSession') {
-            all new NewSessionHandler()
+            all new AddNewSessionHandler()
         }
         prefix('location') {
             all new GrabUsersLocation()
@@ -69,7 +69,7 @@ ratpack {
 
         get "userProfile", new UserProfileHandler()
 
-        path "session/add-new-session", AddNewSessionHandle
+        path "session/add-new-session", AddNewSessionHandler
 
         files { dir "public" }
     }

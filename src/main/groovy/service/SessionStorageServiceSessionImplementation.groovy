@@ -5,6 +5,7 @@ import com.google.inject.Inject
 import database.JsonObjectMapper
 import groovy.sql.GroovyRowResult
 import groovy.sql.Sql
+import groovy.util.logging.Slf4j
 import ratpack.exec.Blocking
 import ratpack.exec.Operation
 import ratpack.exec.Promise
@@ -13,6 +14,7 @@ import session.Session
 /**
  * Created by pocockn on 29/07/16.
  */
+@Slf4j
 class SessionStorageServiceSessionImplementation implements SessionStorageService<Session> {
 
     @Inject
