@@ -7,9 +7,6 @@ import userSession.UserSession
 
 import static ratpack.handlebars.Template.handlebarsTemplate
 
-/**
- * Created by pocockn on 08/08/16.
- */
 class UserProfileHandler extends InjectionHandler {
 
     void handle(Context ctx, UserStorageService userStorageService, UserSession userSession) throws Exception {

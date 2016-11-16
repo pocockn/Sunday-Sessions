@@ -39,6 +39,7 @@ ratpack {
         bind UserSession
         bind SessionStorageService, SessionStorageServiceSessionImplementation
         bind AccountService
+        bind SingleSessionHandler
         module(SessionModule)
         bindInstance new Service() {
             void onStart(StartEvent e) throws Exception {
@@ -65,6 +66,11 @@ ratpack {
         }
         prefix('allSessions') {
             all new AllSessionsHandler()
+        }
+        prefix('session') {
+            path(':id?') {
+                all new SingleSessionHandler()
+            }
         }
 
         get "userProfile", new UserProfileHandler()

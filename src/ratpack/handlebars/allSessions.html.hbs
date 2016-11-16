@@ -2,6 +2,7 @@
     <div class="container">
         <div class="row">
             {{#each model.sessions}}
+                <a href="/session/{{id}}">
                 <div class="col-md-3 col-md-offset-2 centered">
                     <h1>{{title}}</h1>
                     <h2>{{sessionOwner}}</h2>
@@ -11,6 +12,7 @@
                         </a>
                     </div><!--/mt-->
                 </div>
+                </a>
             {{/each}}
         </div><!--/row-->
     </div><!--/container-->
