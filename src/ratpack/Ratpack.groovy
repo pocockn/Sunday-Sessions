@@ -55,27 +55,31 @@ ratpack {
             String loginDialogUrlString = faceBookLogin.buildLoginDialogUrlString()
             render handlebarsTemplate("index.html", model: loginDialogUrlString)
         }
+
         prefix('success') {
             all new FBLoginSuccessHandler()
         }
+
         prefix('newSession') {
             all new AddNewSessionHandler()
         }
+
         prefix('location') {
             all new GrabUsersLocation()
         }
+
         prefix('allSessions') {
             all new AllSessionsHandler()
         }
-        prefix('session') {
-            path(':id?') {
-                all new SingleSessionHandler()
-            }
+
+        prefix("session") {
+            path "add-new-session", new AddNewSessionHandler()
+
+            get ":id?", new SingleSessionHandler()
         }
 
         get "userProfile", new UserProfileHandler()
 
-        path "session/add-new-session", AddNewSessionHandler
 
         files { dir "public" }
     }
