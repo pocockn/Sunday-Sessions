@@ -11,7 +11,7 @@ import static ratpack.handlebars.Template.handlebarsTemplate
 class SingleSessionHandler extends InjectionHandler {
 
     void handle(Context ctx, SessionStorageService sessionService) throws Exception {
-        def id = ctx.pathTokens["id"]
+        def id = ctx.pathTokens.get("id")
         sessionService.fetch(id).onError {
             log.debug("error finding session")
             ctx.clientError(404)
