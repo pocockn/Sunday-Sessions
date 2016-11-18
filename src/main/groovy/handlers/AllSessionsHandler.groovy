@@ -1,19 +1,19 @@
 package handlers
 
+import groovy.util.logging.Slf4j
 import ratpack.handling.Context
 import ratpack.handling.InjectionHandler
 import service.SessionStorageService
 
 import static ratpack.handlebars.Template.handlebarsTemplate
 
-/**
- * Created by pocockn on 01/08/16.
- */
+@Slf4j
 class AllSessionsHandler extends InjectionHandler {
 
     void handle(Context ctx, SessionStorageService sessionService) {
         sessionService.fetchAll()
-                .onError {
+                .onError { e ->
+            log.info("exception finding sessions ${e}")
             ctx.render handlebarsTemplate("error.html")
         }
         .then { sessions ->
