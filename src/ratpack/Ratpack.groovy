@@ -78,11 +78,7 @@ ratpack {
             get ":id?", new SingleSessionHandler()
         }
 
-
-
-
         get "userProfile", new UserProfileHandler()
-
 
 
         files { dir "public" }

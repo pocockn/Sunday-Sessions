@@ -44,13 +44,13 @@ class SessionStorageServiceSessionImplementation implements SessionStorageServic
     }
 
     @Override
-    Promise<Session> fetch(String id) {
+    Promise<List<Session>> fetch(String id) {
         Blocking.get {
-            String q = "SELECT * FROM session WHERE id = ?"
-            (String) sql.firstRow(q, id)?.getAt(0)
-        }.map { json ->
-            Session instance = mapper.readValue(json, Session)
-            instance
+            sql.rows("SELECT * FROM session where id = ${id}").collect { GroovyRowResult result ->
+                String instanceJson = result.getAt(1)
+                Session instance = mapper.readValue(instanceJson, Session)
+                return instance
+            }
         }
     }
 

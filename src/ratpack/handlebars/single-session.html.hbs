@@ -1,9 +1,15 @@
-{{> partials/header.html}}
+{{> partials/page-header.html}}
 <div class="container">
     <div class="row">
-        {{singleHospital}}
+        <div class="col-md-12">
+            <header class="section__title section__title-alt">
+                <small>{{singleSession}}</small>
+                {{#each model.singleSession}}
+                    <h2>{{title}}</h2>
+                {{/each}}
+            </header>
+        </div>
     </div><!--/row-->
 </div><!--/container-->
-</div><!-- /H -->
 </body>
 </html>

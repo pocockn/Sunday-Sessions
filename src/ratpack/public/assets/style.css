@@ -368,3 +368,7 @@ ul {
 .hidden {
     display:none;
 }
+
+.section__title:not(.text-left) {
+    text-align: center;
+}

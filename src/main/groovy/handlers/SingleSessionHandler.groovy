@@ -11,12 +11,13 @@ import static ratpack.handlebars.Template.handlebarsTemplate
 class SingleSessionHandler extends InjectionHandler {
 
     void handle(Context ctx, SessionStorageService sessionService) throws Exception {
-        def id = ctx.pathTokens.get("id")
-        sessionService.fetch(id).onError {
-            log.debug("error finding session")
-            ctx.clientError(404)
+        String id = ctx.pathTokens["id"]
+        sessionService.fetch(id).onError { e ->
+            log.info("error finding session, exception is ${e}")
+            ctx.render handlebarsTemplate("error.html")
         } then { singleSession ->
-            ctx.render handlebarsTemplate("single-session.html.hbs", model: [singleHospital: singleSession])
+            log.info("${singleSession}")
+            ctx.render handlebarsTemplate("single-session.html", model : [singleSession: singleSession])
         }
     }
 
